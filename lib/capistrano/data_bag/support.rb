@@ -35,8 +35,8 @@ module Capistrano
         encrypted_value = encryptor.update(wrapped_value.to_json) + encryptor.final
 
         return {
-          :encrypted_data => Base64.encode64(encrypted_value),
-          :iv => Base64.encode64(iv),
+          :encrypted_data => Base64.encode64(encrypted_value).chomp!,
+          :iv => Base64.encode64(iv).chomp!,
           :version => ENCRYPTOR_VERSION,
           :cipher => ENCRYPTOR_ALGORITHM
         }
